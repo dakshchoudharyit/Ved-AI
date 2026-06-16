@@ -1,0 +1,16 @@
+Diabetes:
+Symptoms include frequent urination, excessive thirst,
+fatigue, blurred vision.
+
+Hypertension:
+Symptoms include headaches, dizziness,
+and shortness of breath.
+
+Asthma:
+Symptoms include wheezing, coughing,
+and difficulty breathing.
+
+Heart Disease:
+Symptoms include chest pain,
+shortness of breath,
+and fatigue.

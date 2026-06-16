@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8fafc;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 30px;
+  background: #f8fafc;
+}
+
+.app h1 {
+  text-align: center;
+  color: #0f172a;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.dashboard {
+  max-width: 1300px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.patient-form,
+.analysis-card {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.patient-form h2,
+.analysis-card h2 {
+  margin-bottom: 20px;
+  color: #2563eb;
+}
+
+.patient-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.patient-form input,
+.patient-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.patient-form input:focus,
+.patient-form textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.patient-form textarea {
+  resize: vertical;
+}
+
+.patient-form button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.patient-form button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.patient-form button:active {
+  transform: translateY(0);
+}
+
+.analysis-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.analysis-card p {
+  color: #334155;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  font-size: 15px;
+}
+
+.analysis-card h2 {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .app {
+    padding: 15px;
+  }
+
+  .app h1 {
+    font-size: 2rem;
+  }
+}
+
+/* REPORT HISTORY */
+
+.history-card {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.history-card h2 {
+  color: #2563eb;
+  margin-bottom: 15px;
+}
+
+.history-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.history-item:hover {
+  background: #dbeafe;
+  transform: translateY(-2px);
+}
+
+.history-item strong {
+  color: #0f172a;
+}
+
+.history-item p {
+  margin-top: 5px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* 3-COLUMN DASHBOARD */
+
+.dashboard {
+  max-width: 1500px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 300px 1fr 1fr;
+  gap: 25px;
+}
+
+/* MOBILE */
+
+@media (max-width: 1200px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .history-card {
+    order: 1;
+  }
+}
+
+.stats-card {
+  max-width: 1400px;
+  margin: 0 auto 20px auto;
+
+  background: white;
+  padding: 15px 20px;
+
+  border-radius: 15px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.analysis-card p {
+  white-space: pre-wrap;
+  line-height: 1.8;
+}
+
+.context-box {
+  margin-top: 15px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 10px;
+
+  padding: 15px;
+
+  white-space: pre-wrap;
+
+  overflow-x: auto;
+
+  font-size: 14px;
+}
+
+.analysis-card h3 {
+  margin-top: 20px;
+  color: #2563eb;
+}

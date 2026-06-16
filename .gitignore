@@ -1,0 +1,7 @@
+.env
+venv/
+node_modules/
+__pycache__/
+*.pyc
+rag/medical_index.faiss
+rag/chunks.pkl
