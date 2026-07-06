@@ -1,13 +1,22 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 import google.generativeai as genai
+from fastapi.security import OAuth2PasswordBearer
 import os
 from rag.retriever import retrieve
+from schemas import UserRegister, UserLogin
+from auth import (
+    hash_password,
+    verify_password,
+    create_access_token,
+    get_current_user
+)
+from models import User
 
-from database import SessionLocal, engine
-from models import Base, MedicalReport
+from database import SessionLocal, engine, Base
+from models import User, MedicalReport, ChatHistory
 
 # Load environment variables
 load_dotenv()
@@ -34,9 +43,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Create tables
+# Create table
 Base.metadata.create_all(bind=engine)
-
+from sqlalchemy import inspect
 
 class AnalysisRequest(BaseModel):
     name: str
@@ -50,9 +59,95 @@ def home():
         "message": "Medical AI Assistant Running"
     }
 
+@app.post("/register")
+def register(user: UserRegister):
 
+    db = SessionLocal()
+
+    existing_user = db.query(User).filter(
+        User.email == user.email
+    ).first()
+
+    if existing_user:
+        db.close()
+        return {
+            "message": "Email already registered"
+        }
+    print(user.password)
+    print(len(user.password))
+    new_user = User(
+        name=user.name,
+        email=user.email,
+        password=hash_password(user.password),
+        age=user.age
+    )
+
+    db.add(new_user)
+    db.commit()
+
+    db.close()
+
+    return {
+        "message": "User registered successfully"
+    }
+@app.post("/login")
+def login(user: UserLogin):
+
+    db = SessionLocal()
+
+    existing_user = db.query(User).filter(
+        User.email == user.email
+    ).first()
+
+    if not existing_user:
+        db.close()
+        return {
+            "message": "Invalid Email or Password"
+        }
+
+    if not verify_password(
+        user.password,
+        existing_user.password
+    ):
+        db.close()
+        return {
+            "message": "Invalid Email or Password"
+        }
+
+    token = create_access_token(
+        {
+            "user_id": existing_user.id,
+            "email": existing_user.email
+        }
+    )
+
+    db.close()
+
+    return {
+    "message": "Login Successful",
+    "access_token": token,
+    "token_type": "bearer",
+    "user": {
+        "id": existing_user.id,
+        "name": existing_user.name,
+        "email": existing_user.email,
+        "age": existing_user.age
+    }
+}
+@app.get("/me")
+def get_me(current_user: User = Depends(get_current_user)):
+
+    return {
+        "id": current_user.id,
+        "name": current_user.name,
+        "email": current_user.email,
+        "age": current_user.age
+    }
 @app.post("/analyze")
-def analyze(request: AnalysisRequest):
+def analyze(
+    request: AnalysisRequest,
+    current_user: User = Depends(get_current_user)
+):
 
     medical_context = retrieve(
         request.symptoms
@@ -92,8 +187,7 @@ Keep the answer concise.
     try:
 
         report = MedicalReport(
-            patient_name=request.name,
-            age=request.age,
+            user_id=current_user.id,
             symptoms=request.symptoms,
             analysis=response.text
         )
@@ -110,13 +204,17 @@ Keep the answer concise.
     }
 
 @app.get("/reports")
-def get_reports():
+def get_reports(
+    current_user: User = Depends(get_current_user)
+):
 
     db = SessionLocal()
 
     try:
         reports = db.query(
             MedicalReport
+        ).filter(
+            MedicalReport.user_id == current_user.id
         ).order_by(
             MedicalReport.id.desc()
         ).all()
@@ -126,8 +224,6 @@ def get_reports():
         for report in reports:
             result.append({
                 "id": report.id,
-                "patient_name": report.patient_name,
-                "age": report.age,
                 "symptoms": report.symptoms,
                 "analysis": report.analysis,
                 "created_at": str(report.created_at)
