@@ -1,122 +1,147 @@
-# 🏥 Medical AI Assistant
+# 🏥 VED AI - AI Powered Medical Assistant
 
-An AI-powered healthcare application that analyzes patient symptoms and generates context-aware medical insights using Gemini AI and Retrieval-Augmented Generation (RAG).
+VED AI is a full-stack AI-powered medical assistant that helps users analyze symptoms using Google's Gemini AI and Retrieval-Augmented Generation (RAG). The application provides secure user authentication, stores previous medical reports, and offers an intuitive dashboard for managing AI-generated health analyses.
 
-## 🚀 Features
+> ⚠️ Disclaimer: This application is intended for educational purposes only and should not be considered a substitute for professional medical advice.
 
-* AI-powered symptom analysis using Gemini AI
-* Retrieval-Augmented Generation (RAG)
-* Semantic search using FAISS vector database
-* Medical knowledge retrieval using Sentence Transformers
-* Patient report storage and history management
-* Responsive React frontend
-* FastAPI backend with REST APIs
-* MySQL database integration
+---
+
+## ✨ Features
+
+- 🔐 Secure User Authentication (JWT)
+- 👤 User Registration & Login
+- 🤖 AI-Powered Symptom Analysis using Gemini
+- 📚 Retrieval-Augmented Generation (RAG)
+- 📄 Medical Report History
+- 🗄️ MySQL Database Integration
+- ⚡ FastAPI REST Backend
+- ⚛️ React Frontend
+- 🔒 Protected Dashboard
+- 📱 Responsive & Modern UI
+
+---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
 
-* React.js
-* CSS
+- React
+- React Router
+- Axios
+- CSS
 
 ### Backend
 
-* FastAPI
-* Python
+- FastAPI
+- SQLAlchemy
+- JWT Authentication
+- Passlib (bcrypt)
+- Python
+
+### AI
+
+- Google Gemini API
+- Sentence Transformers
+- FAISS
+- RAG Pipeline
 
 ### Database
 
-* MySQL
-* SQLAlchemy ORM
+- MySQL
 
-### AI & RAG
-
-* Gemini AI
-* Sentence Transformers
-* FAISS
-
-## 📌 System Workflow
-
-1. User enters symptoms through the React frontend.
-2. FastAPI receives the request.
-3. Symptoms are converted into embeddings using Sentence Transformers.
-4. FAISS retrieves the most relevant medical knowledge.
-5. Retrieved context is passed to Gemini AI.
-6. Gemini generates a context-aware medical analysis.
-7. The report is stored in MySQL.
-8. Results are displayed to the user.
-
-## 🧠 RAG Architecture
-
-User Symptoms
-↓
-Sentence Transformer Embeddings
-↓
-FAISS Similarity Search
-↓
-Relevant Medical Context Retrieval
-↓
-Gemini AI
-↓
-Medical Analysis
+---
 
 ## 📂 Project Structure
 
-```text
-medical-ai-assistant/
+```
+VED-AI/
 │
 ├── frontend/
-├── data/
-├── rag/
-│   ├── build_index.py
-│   ├── retriever.py
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── styles/
 │
-├── main.py
+├── rag/
+│
+├── auth.py
 ├── database.py
 ├── models.py
+├── schemas.py
+├── main.py
 ├── requirements.txt
-├── .env.example
 └── README.md
 ```
 
-## ⚙️ Installation
+---
 
-### Clone Repository
+## 🚀 Getting Started
+
+### 1. Clone Repository
 
 ```bash
-git clone https://github.com/dakshchoudharyit/Medical-AI-Assistant.git
-cd Medical-AI-Assistant
+git clone https://github.com/your-username/ved-ai.git
+cd ved-ai
 ```
 
-### Create Virtual Environment
+---
+
+### 2. Create Virtual Environment
 
 ```bash
 python -m venv venv
+```
+
+Windows
+
+```bash
 venv\Scripts\activate
 ```
 
-### Install Dependencies
+Linux / Mac
+
+```bash
+source venv/bin/activate
+```
+
+---
+
+### 3. Install Backend Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Configure Environment Variables
+---
+
+### 4. Configure Environment Variables
 
 Create a `.env` file:
 
 ```env
-GEMINI_API_KEY=your_api_key_here
+DATABASE_URL=your_database_url
+GEMINI_API_KEY=your_gemini_api_key
+SECRET_KEY=your_secret_key
 ```
 
-### Run Backend
+---
+
+### 5. Run Backend
 
 ```bash
 uvicorn main:app --reload
 ```
 
-### Run Frontend
+Backend runs on
+
+```
+http://127.0.0.1:8000
+```
+
+---
+
+### 6. Run Frontend
 
 ```bash
 cd frontend
@@ -124,17 +149,64 @@ npm install
 npm run dev
 ```
 
-## 🎯 Future Improvements
+Frontend runs on
 
-* PDF-based medical document retrieval
-* User authentication and authorization
-* Advanced medical knowledge base
-* Cloud deployment
-* Source citations for retrieved content
+```
+http://localhost:5173
+```
 
-## 👨‍💻 Author
+---
 
-Daksh Choudhary
+## 📸 Screenshots
 
-B.Tech Information Technology
-Delhi Technological University
+### Login
+
+> Add Screenshot
+
+### Dashboard
+
+> Add Screenshot
+
+### AI Analysis
+
+> Add Screenshot
+
+---
+
+## 🎥 Demo
+
+Coming Soon
+
+---
+
+## 📌 Future Improvements
+
+- 🌙 Dark Mode
+- 📄 PDF Medical Report Export
+- 📈 Health Analytics Dashboard
+- 💬 AI Chat History
+- 👤 User Profile Management
+- ☁️ Cloud Deployment
+- 🐳 Docker Support
+
+---
+
+## 📖 Learning Outcomes
+
+This project helped me learn:
+
+- FastAPI
+- JWT Authentication
+- React Routing
+- SQLAlchemy ORM
+- MySQL Integration
+- Retrieval-Augmented Generation (RAG)
+- Google Gemini API
+- REST API Development
+- Full-Stack Application Architecture
+
+---
+
+## 📄 License
+
+This project is developed for educational and portfolio purposes.
