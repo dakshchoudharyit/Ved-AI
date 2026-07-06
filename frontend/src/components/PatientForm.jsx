@@ -1,3 +1,5 @@
+import "../styles/PatientForm.css";
+
 function PatientForm({
   name,
   setName,
@@ -9,33 +11,45 @@ function PatientForm({
 }) {
   return (
     <div className="patient-form">
-      <h2>Patient Information</h2>
 
-      <label>Name</label>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+      <h2>🩺 Patient Information</h2>
 
-      <label>Age</label>
-      <input
-        type="number"
-        value={age}
-        onChange={(e) => setAge(e.target.value)}
-      />
+      <div>
+        <label>Patient Name</label>
 
-      <label>Symptoms</label>
-      <textarea
-        rows="6"
-        value={symptoms}
-        onChange={(e) => setSymptoms(e.target.value)}
-        placeholder="Describe symptoms..."
-      />
+        <input
+          type="text"
+          placeholder="Enter patient name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
+
+      <div>
+        <label>Age</label>
+
+        <input
+          type="number"
+          placeholder="Enter age"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+        />
+      </div>
+
+      <div>
+        <label>Symptoms</label>
+
+        <textarea
+          placeholder="Describe the symptoms in detail..."
+          value={symptoms}
+          onChange={(e) => setSymptoms(e.target.value)}
+        />
+      </div>
 
       <button onClick={onAnalyze}>
-        Analyze Symptoms
+        🔍 Analyze Symptoms
       </button>
+
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../services/api";
+import "../styles/Login.css";
 
 function Login() {
 
@@ -17,15 +18,17 @@ function Login() {
                 email,
                 password,
             });
-            console.log(res.data);
+
             localStorage.setItem(
                 "token",
                 res.data.access_token
             );
-            console.log("Stored:", localStorage.getItem("token"));
+
             navigate("/dashboard");
 
-        } catch (err) {
+        }
+
+        catch {
 
             alert("Invalid Email or Password");
 
@@ -35,37 +38,67 @@ function Login() {
 
     return (
 
-        <div>
+        <div className="login-page">
 
-            <h1>Medical AI Assistant</h1>
+            <div className="login-card">
 
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e)=>setEmail(e.target.value)}
-            />
+                <div className="login-header">
 
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e)=>setPassword(e.target.value)}
-            />
+                    <div className="logo-box">
 
-            <button onClick={login}>
-                Login
-            </button>
+                        <span className="logo-icon">
+                            🏥
+                        </span>
 
-            <p>
+                    </div>
 
-                Don't have an account?
+                    <div>
 
-                <Link to="/register">
-                    Register
-                </Link>
+                        <h1>VED AI</h1>
 
-            </p>
+                        <p className="subtitle">
+                            Sign in to continue
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <input
+                    type="email"
+                    placeholder="Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+
+                <button onClick={login}>
+
+                    Login
+
+                </button>
+
+                <p>
+
+                    Don't have an account?
+
+                    {" "}
+
+                    <Link to="/register">
+
+                        Register
+
+                    </Link>
+
+                </p>
+
+            </div>
 
         </div>
 

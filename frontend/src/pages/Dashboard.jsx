@@ -72,7 +72,15 @@ function Dashboard() {
 
       <Navbar />
 
-      <h1>🏥 Medical AI Assistant</h1>
+      <div className="heading">
+
+        <h1>🏥 Medical AI Assistant</h1>
+
+        <p>
+          AI Powered Healthcare Assistant
+        </p>
+
+      </div>
 
       <div className="stats-card">
         Total Reports: {reports.length}

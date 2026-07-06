@@ -1,0 +1,79 @@
+.analysis-card{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.analysis-card h2{
+    color:#2563eb;
+    margin-bottom:8px;
+}
+
+.analysis-content{
+
+    background:#f8fafc;
+    border-left:5px solid #2563eb;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    min-height:320px;
+
+    line-height:1.8;
+
+    white-space:pre-wrap;
+
+    overflow-y:auto;
+
+}
+
+.loading{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:250px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:#2563eb;
+
+}
+
+.context{
+
+    background:#eef6ff;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    border-left:4px solid #0ea5e9;
+
+}
+
+.context h3{
+
+    color:#0284c7;
+
+    margin-bottom:10px;
+
+}
+
+.analysis-placeholder{
+
+    color:#94a3b8;
+
+    text-align:center;
+
+    margin-top:120px;
+
+    font-size:17px;
+
+}

@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
+import "../styles/Register.css";
 
 function Register() {
 
     const navigate = useNavigate();
 
     const [name, setName] = useState("");
-    const [age, setAge] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [age, setAge] = useState("");
 
     const register = async () => {
 
@@ -17,9 +18,9 @@ function Register() {
 
             await api.post("/register", {
                 name,
-                age: Number(age),
                 email,
-                password
+                password,
+                age: Number(age),
             });
 
             alert("Registration Successful!");
@@ -36,51 +37,57 @@ function Register() {
 
     return (
 
-        <div>
+        <div className="register-page">
 
-            <h1>Create Account</h1>
+            <div className="register-card">
 
-            <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e)=>setName(e.target.value)}
-            />
+                <h1>🏥 Medical AI</h1>
 
-            <input
-                type="number"
-                placeholder="Age"
-                value={age}
-                onChange={(e)=>setAge(e.target.value)}
-            />
+                <p>Create your account</p>
 
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e)=>setEmail(e.target.value)}
-            />
+                <input
+                    type="text"
+                    placeholder="Full Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
 
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e)=>setPassword(e.target.value)}
-            />
+                <input
+                    type="email"
+                    placeholder="Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
 
-            <button onClick={register}>
-                Register
-            </button>
+                <input
+                    type="number"
+                    placeholder="Age"
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
+                />
 
-            <p>
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
 
-                Already have an account?
+                <button onClick={register}>
+                    Create Account
+                </button>
 
-                <Link to="/">
-                    Login
-                </Link>
+                <p>
 
-            </p>
+                    Already have an account?{" "}
+
+                    <Link to="/">
+                        Login
+                    </Link>
+
+                </p>
+
+            </div>
 
         </div>
 
